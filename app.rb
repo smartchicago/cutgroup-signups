@@ -8,8 +8,8 @@ class CutgroupSignups < Sinatra::Base
     
     begin
       s3 = AWS::S3.new
-      bucket = s3.buckets["cutgroup.smartchicagoapps.org"]    # FIXME: set as env var
-      signup_file = bucket.objects['assets/js/signups.json']  # FIXME: set as env var
+      bucket = s3.buckets[ENV['AWS_SIGNUP_BUCKET']]
+      signup_file = bucket.objects[ENV['AWS_SIGNUP_FILE_KEY']]
     
       ward = params["Field31"]  # The number of the ward
       json = JSON.parse(signup_file.read)
