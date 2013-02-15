@@ -6,13 +6,6 @@ class CutgroupSignups < Sinatra::Base
   post "/signup" do
     halt 401 unless params['HandshakeKey'] && params['HandshakeKey'] == ENV['WUFOO_HANDSHAKE_KEY']
     
-    # Input format:
-    # {
-    #   "Field1"=>"first-field-awesome", "Field2"=>"second-field-better", 
-    #   "CreatedBy"=>"public", "DateCreated"=>"2013-02-14 19:23:10", 
-    #   "EntryId"=>"1", "IP"=>"69.245.247.117", "HandshakeKey"=>"123456789"
-    # }
-
     begin
       s3 = AWS::S3.new
       bucket = s3.buckets["cutgroup.smartchicagoapps.org"]    # FIXME: set as env var
