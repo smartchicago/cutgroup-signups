@@ -17,11 +17,11 @@ class CutgroupSignups < Sinatra::Base
       json[ward.to_s] ||= 0
       json[ward.to_s] += 1
     
-      signup_file.write json.to_json
+      signup_file.write json.to_json, :acl => :public_read, :content_type => "application/json"
 
       201
     rescue StandardError => se
-      puts "error: #{se.inspect}"
+      puts "error: #{se.inspect} #{se.backtrace.join(%Q(\n))}"
     end      
   end  
 end
