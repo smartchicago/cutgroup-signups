@@ -10,7 +10,7 @@ class CutgroupSignups < Sinatra::Base
     # bucket = s3.buckets("cutgroup.smartchicagoapps.org")    # FIXME: set as env var
     # signup_file = bucket.objects['assets/js/signups.json']  # FIXME: set as env var
     
-    params.inspect
+    puts params.inspect
 
   end  
 end
