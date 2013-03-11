@@ -18,6 +18,7 @@ class CutgroupSignups < Sinatra::Base
       json[ward.to_s] += 1
     
       signup_file.write json.to_json, :acl => :public_read, :content_type => "application/json"
+      puts "success:\tward:#{ward.to_s}\tprevious: #{json[ward.to_s] - 1}\tcurrent: #{json[ward.to_s]}"
 
       201
     rescue StandardError => se
